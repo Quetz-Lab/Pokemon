@@ -1,0 +1,38 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+public class GameManager : MonoBehaviour
+{
+    private static GameManager m_instance;
+    [SerializeField]  float GlobalxpRate = 1.0f;
+    [SerializeField] private GameObject CombatArenaPrefab;
+    public static GameManager GetInstance()
+    {
+        if (m_instance == null) { return m_instance; }
+        m_instance = FindAnyObjectByType<GameManager>();
+        if (m_instance != null) { return m_instance; }
+        GameObject gameManagerObject = new GameObject("Game Manager");
+        m_instance = gameManagerObject.AddComponent<GameManager>();
+        return m_instance;
+    }
+    void Start()
+    {
+        m_instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public static void StartCombat()
+    {
+        SceneManager.CreateScene("CombatArena", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
+        Scene combatArenaScene = SceneManager.GetSceneByName("CombatArena");
+        if (combatArenaScene.isLoaded)
+        {
+            SceneManager.SetActiveScene(combatArenaScene);
+            GameObject combatArena = Instantiate(GetInstance().CombatArenaPrefab);
+            combatArena.transform.position = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogError("Combat Arena scene could not be loaded");
+        }
+    }
+}

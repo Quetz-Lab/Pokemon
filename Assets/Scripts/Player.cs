@@ -70,7 +70,7 @@ public class PlayerMove : State
 
     public override void Enter() { Debug.Log("Player is now moving");
 
-        m_Player.animator?.CrossFadeInFixedTime("Move", 0.2f);
+        //m_Player.animator?.CrossFadeInFixedTime("Move", 0.2f);
     }
     public override void Update() { }
     public override void FixedUpdate()
@@ -111,6 +111,26 @@ public class PlayerFalling : State
         
     }
 
+}
+
+public class  Ambushed : State
+{
+    public override void Enter()
+    {
+        Debug.Log("Player is now ambushed");
+    }
+    public override void Update()
+    {
+
+    }
+    public override void FixedUpdate()
+    {
+
+    }
+    public override void Exit()
+    {
+        Debug.Log("Player is now leaving ambushed state");
+    }
 }
 
 

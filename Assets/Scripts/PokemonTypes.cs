@@ -11,12 +11,12 @@ public class PokemonTypes
         Fairy
     }
 
-    public float[] typeStrengths = new float[,]
-    {
-        {1f,0.5f,1f,2f,1f },
-        {2f,1f,0.5f,1f,1f },
-        {1f,2f,1f,0.5f,1f },
-        {0.5f, 1f, 2f, 1f, 1f },
-        {1f, 1f , 1f, 1f, 1f }
-    };
+    public float[,] typeStrengths = new float[,]
+{
+    {1f, 0.5f, 1f, 2f, 1f},
+    {2f, 1f, 0.5f, 1f, 1f},
+    {1f, 2f, 1f, 0.5f, 1f},
+    {0.5f, 1f, 2f, 1f, 1f},
+    {1f, 1f, 1f, 1f, 1f}
+};
 }

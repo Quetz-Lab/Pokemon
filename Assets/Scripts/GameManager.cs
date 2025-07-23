@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance;
     [SerializeField]  float GlobalxpRate = 1.0f;
     [SerializeField] private GameObject CombatArenaPrefab;
+    [SerializeField] private GameObject PokemonPrefab;
     public static GameManager GetInstance()
     {
         if (m_instance == null) { return m_instance; }
@@ -34,5 +35,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Combat Arena scene could not be loaded");
         }
+    }
+    public static void SpawnPokemon (PokemonDefinition p_Pokemon, Vector3 p_Position)
+    {
+        PokemonComponent pokemonComponent = Instantiate(GetInstance().PokemonPrefab, p_Position, Quaternion.identity).GetComponent<PokemonComponent>();
+
+        pokemonComponent.Initialize(p_Pokemon);
     }
 }

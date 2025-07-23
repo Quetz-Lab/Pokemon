@@ -8,7 +8,8 @@ public class PokemonTypes
         Water,
         Air,
         Stone,
-        Fairy
+        Fairy,
+        none
     }
 
     public float[,] typeStrengths = new float[,]

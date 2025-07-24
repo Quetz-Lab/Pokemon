@@ -690,7 +690,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1701239801
+--- !u!1 &2101512833
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -698,39 +698,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1701239803}
-  - component: {fileID: 1701239802}
+  - component: {fileID: 2101512835}
+  - component: {fileID: 2101512834}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: SpawnPokemon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1701239802
+--- !u!114 &2101512834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701239801}
+  m_GameObject: {fileID: 2101512833}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b218db69809e83b41b7559f9e87b9482, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ea30b83d7046c248964742658194e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   GlobalxpRate: 1
   CombatArenaPrefab: {fileID: 0}
 --- !u!4 &1701239803
+=======
+  pokemonDefinition: {fileID: 11400000, guid: a6f337ad510ebc04fb84a8c2600550ba, type: 2}
+  pokemonDefinition2: {fileID: 11400000, guid: b6b6c03b513c0b244afe4ef4ef9666a8, type: 2}
+--- !u!4 &2101512835
+>>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701239801}
+  m_GameObject: {fileID: 2101512833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.6324043, y: -2.4525847, z: 1.3925242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -740,9 +746,14 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1701239803}
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 384673856}
   - {fileID: 1393225608}
+<<<<<<< Updated upstream
+=======
+  - {fileID: 6981645708257982557}
+  - {fileID: 764454445}
+  - {fileID: 2101512835}
+>>>>>>> Stashed changes

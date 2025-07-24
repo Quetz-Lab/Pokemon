@@ -722,9 +722,15 @@ MonoBehaviour:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   GlobalxpRate: 1
   CombatArenaPrefab: {fileID: 0}
 --- !u!4 &1701239803
+=======
+  pokemonDefinition: {fileID: 11400000, guid: a6f337ad510ebc04fb84a8c2600550ba, type: 2}
+  pokemonDefinition2: {fileID: 11400000, guid: b6b6c03b513c0b244afe4ef4ef9666a8, type: 2}
+--- !u!4 &2101512835
+>>>>>>> Stashed changes
 =======
   pokemonDefinition: {fileID: 11400000, guid: a6f337ad510ebc04fb84a8c2600550ba, type: 2}
   pokemonDefinition2: {fileID: 11400000, guid: b6b6c03b513c0b244afe4ef4ef9666a8, type: 2}
@@ -770,6 +776,9 @@ SceneRoots:
   - {fileID: 2101512835}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

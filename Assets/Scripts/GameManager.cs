@@ -5,6 +5,12 @@ public class GameManager : MonoBehaviour
     private static GameManager m_instance;
     [SerializeField]  float GlobalxpRate = 1.0f;
     [SerializeField] private GameObject CombatArenaPrefab;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private GameObject PokemonPrefab;
+    [SerializeField] private PokemonDefinition pkmn1;
+    [SerializeField] private PokemonDefinition pkmn2;
+>>>>>>> Stashed changes
     public static GameManager GetInstance()
     {
         if (m_instance == null) { return m_instance; }
@@ -18,6 +24,8 @@ public class GameManager : MonoBehaviour
     {
         m_instance = this;
         DontDestroyOnLoad(gameObject);
+        SpawnPokemon(pkmn1, new Vector3(0, 0, 0));
+        SpawnPokemon(pkmn2, new Vector3(2, 0, 0));
     }
 
     public static void StartCombat()

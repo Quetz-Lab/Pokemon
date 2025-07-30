@@ -389,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 384673851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 8.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -533,6 +533,58 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+<<<<<<< Updated upstream
+=======
+--- !u!1 &764454443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 764454445}
+  - component: {fileID: 764454444}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &764454444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764454443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b218db69809e83b41b7559f9e87b9482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalxpRate: 1
+  CombatArenaPrefab: {fileID: 0}
+  PokemonPrefab: {fileID: 9091351849840639681, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+  pkmn1: {fileID: 11400000, guid: b6b6c03b513c0b244afe4ef4ef9666a8, type: 2}
+  pkmn2: {fileID: 11400000, guid: a6f337ad510ebc04fb84a8c2600550ba, type: 2}
+--- !u!4 &764454445
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764454443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6324043, y: -2.4525847, z: 1.3925242}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> Stashed changes
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +742,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!1 &2101512833
 GameObject:
   m_ObjectHideFlags: 0
@@ -760,6 +813,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+--- !u!1001 &6981645708257982557
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6324043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.4525847
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.3925242
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2271017880484957959, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9091351849840639681, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+      propertyPath: m_Name
+      value: PokemonPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+>>>>>>> Stashed changes
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

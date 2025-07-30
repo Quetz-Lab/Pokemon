@@ -743,6 +743,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &2101512833
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +815,8 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &6981645708257982557
 PrefabInstance:
   m_ObjectHideFlags: 0

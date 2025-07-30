@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject PokemonPrefab;
     [SerializeField] private PokemonDefinition pkmn1;
     [SerializeField] private PokemonDefinition pkmn2;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     public static GameManager GetInstance()
     {

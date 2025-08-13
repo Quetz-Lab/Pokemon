@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PokemonDefinition[] m_pkmToSpawn;
     [SerializeField] private PokemonDefinition pkmn1;
     [SerializeField] private PokemonDefinition pkmn2;
-    public static GameObject NewPokemon => Instantiate(Instance.PokemonPrefab);
+    
     public static GameManager GetInstance()
     {
         if (m_instance == null) { return m_instance; }
@@ -48,19 +49,22 @@ public class GameManager : MonoBehaviour
 
         pokemonComponent.Initialize(p_Pokemon);
     }
+
+    private static IEnumerator LoadCombatSceneAndInitialize(PokemonDefinition p_Poke1, PokemonDefinition p_Poke2)
+    {
+        AsyncOperation t_AsyncLoad = SceneManager.LoadSceneAsync("CombatScene");
+        while (!t_AsyncLoad.isDone) { yield return null; }
+        Instantiate(ForestArena);
+        PokemonComponent t_Pokemon1 = NewPokemon.GetComponent<PokemonComponent>();
+        t_Pokemon1.Initialize(p_Poke1);
+        PokemonComponent t_Pokemon2 = NewPokemon.GetComponent<PokemonComponent>();
+        t_Pokemon2.Initialize(p_Poke2);
+    }
+    public static GameObject NewPokemon => Instantiate(Instance.PokemonPrefab);
     public static void StartCombatWithRandomPokemon(PokemonDefinition p_Pokemon1)
     {
-        PokemonDefinition p_Pokemon2 = Instance.GetRandomPokemon();
+        PokemonDefinition p_Pokemon2 = m_instance.GetRandomPokemon();
         Instance.StartCorutine(LoadCombatSceneAndInitialize(p_Pokemon1,p_Pokemon2));
     }
 }
-private static IEnumerator LoadCombatSceneAndInitialize(PokemonDefinition p_Poke1, PokemonDefinition p_Poke2)
-{
-    AsyncOperation t_AsyncLoad = SceneManager.LoadSceneAsync("CombatScene");
-    while (!t_AsyncLoad.isDone) {yield return null;}
-    Instantiate(ForestArena);
-    Pokemon t_Pokemon1 = NewPokemon.GetComponent<Pokemon>();
-    t_Pokemon1.Initialize(p_Poke1);
-    Pokemon t_Pokemon2 = NewPokemon.GetComponent<Pokemon>();
-    t_Pokemon2.Initialize(p_Poke2);
-}
+

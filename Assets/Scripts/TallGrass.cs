@@ -9,7 +9,7 @@ public class TallGrass : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.TryGetComponent(out MainCharacter p_MainCharacter)) {return;}
+        if (!other.TryGetComponent(out Player p_MainCharacter)) {return;}
         GameManager.StartCombatWithRandomPokemon(p_MainCharacter.Pokemon);
         //if (Random.value < 0.05f) p_MainCharacter.GetAmbushed();
     }

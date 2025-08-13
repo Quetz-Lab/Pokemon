@@ -25,6 +25,35 @@ public class Player : StateMachine
         animator = GetComponent<Animator>();
         m_CurrentState = new PlayerIdle(this);
     }
+    public void Rotate(float p_RotationSpeed)
+    {
+        float rotation = MoveDirection().x;
+        //animator.SetFloat("Turn", rotation * 90);
+        animator.InterpolateFloat("Turn", rotation * 90, p_RotationSpeed);
+        if(rotation == 0f) { return; }
+        
+            Quaternion targetRotation = Quaternion.Euler(0f, transform.eulerAngles.y + rotation * 90f,0f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * p_RotationSpeed);
+        
+    }
+
+    public void Move(float p_Speed)
+    {
+        float move = MoveDirection().z;
+        if (move == 0f) { return; }
+        rb.linearVelocity = transform.forward * move * p_Speed;
+    }
+
+    public void ClampToFloor()
+    {
+        if (!isGrounded()) {  return; }
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2f, groundLayer))
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+        }
+    }
+
 }
 
 public class PlayerIdle : State
@@ -38,7 +67,7 @@ public class PlayerIdle : State
     public override void Enter()
     {
         Debug.Log("Player is now idle. ");
-        // m_Player.animator?.CrossFadeInFixedTime("Idle", 0.2f);
+        m_Player.animator?.CrossFadeInFixedTime("Idle", 0.2f);
         m_Player.rb.linearVelocity = Vector3.zero;
         m_Player.rb.useGravity = true;
     }
@@ -49,10 +78,12 @@ public class PlayerIdle : State
 
     public override void FixedUpdate()
     {
+        m_Player.Rotate(5f);
         if (m_Player.MoveDirection().magnitude > 0f)
         {
             m_Player.ChangeState(new PlayerMove(m_Player));
         }
+        if (!m_Player.isGrounded()) { m_Player.ChangeState(new PlayerFalling(m_Player)); }
     }
     public override void Exit() 
     {
@@ -70,14 +101,15 @@ public class PlayerMove : State
 
     public override void Enter() { Debug.Log("Player is now moving");
 
-        //m_Player.animator?.CrossFadeInFixedTime("Move", 0.2f);
+        m_Player.animator?.CrossFadeInFixedTime("Move", 0.2f);
     }
     public override void Update() { }
     public override void FixedUpdate()
     {
-        if (m_Player.MoveDirection().magnitude < 0.1f) { m_Player.ChangeState(new PlayerIdle(m_Player)); }
-
-        m_Player.rb.linearVelocity = m_Player.MoveDirection() * 5f;
+        m_Player.Rotate(5f);
+        m_Player.Move(5f);
+        if (m_Player.MoveDirection().z <= 0) { m_Player.ChangeState(new PlayerIdle(m_Player)); }
+        if (!m_Player.isGrounded()) { m_Player.ChangeState(new PlayerFalling(m_Player)); }
     }
     public override void Exit()
     {
@@ -96,7 +128,9 @@ public class PlayerFalling : State
 
     public override void Enter()
     {
-
+        Debug.Log("Player is now falling");
+        m_Player.animator?.CrossFadeInFixedTime("Falling", 0.2f);
+        m_Player.rb.useGravity = true;
     }
     public override void Update()
     {
@@ -104,11 +138,14 @@ public class PlayerFalling : State
     }
     public override void FixedUpdate()
     {
-        
+        if(m_Player.isGrounded())
+        {
+            m_Player.ChangeState(new PlayerIdle(m_Player));
+        }
     }
     public override void Exit()
     {
-        
+        m_Player.ClampToFloor();
     }
 
 }
@@ -131,6 +168,20 @@ public class  Ambushed : State
     {
         Debug.Log("Player is now leaving ambushed state");
     }
+}
+
+public static class MyExtensions
+{
+    public static void InterpolateFloat(this Animator animator, string parameter , float value, float speed)
+    {
+        float current = animator.GetFloat(parameter);
+        float direction = Mathf.Sign(value - current);
+        current = Mathf.MoveTowards(current, value, speed * Time.deltaTime);
+        animator.SetFloat(parameter, current);
+
+    }
+
+    //public static void Interpolate(this float me, float target)
 }
 
 

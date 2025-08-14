@@ -251,8 +251,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e40568b0f530954c9b21e16ca3593ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 318216777}
   m_SourcePrefab: {fileID: 100100000, guid: 8e40568b0f530954c9b21e16ca3593ce, type: 3}
+--- !u!1 &318216776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e40568b0f530954c9b21e16ca3593ce, type: 3}
+  m_PrefabInstance: {fileID: 318216775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &318216777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318216776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e65412877d2bdcf4ca6baa3b2dacd6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,9 +716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b218db69809e83b41b7559f9e87b9482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CombatArenaPrefab: {fileID: 0}
   GlobalxpRate: 1
   CombatArenaPrefab: {fileID: 0}
   PokemonPrefab: {fileID: 9091351849840639681, guid: c780388ef368cc242b9cefc39c611adb, type: 3}
+  m_pkmToSpawn: []
   pkmn1: {fileID: 11400000, guid: b6b6c03b513c0b244afe4ef4ef9666a8, type: 2}
   pkmn2: {fileID: 11400000, guid: a6f337ad510ebc04fb84a8c2600550ba, type: 2}
 --- !u!4 &764454445

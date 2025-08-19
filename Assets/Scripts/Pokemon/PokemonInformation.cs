@@ -19,6 +19,7 @@ public class PokemonInformation
     }
     public string Name => m_Definition.name;
     public int MaxHealth => m_Definition.Health +2 * m_Level;
+    public int CurrentHealth => m_CurrentHealth;
     public int Attack => m_Definition.Attack + m_Level;
     public int SpecialAttack => m_Definition.SpecialAttack + m_Level;
     public int Defense => m_Definition.Defense + m_Level;

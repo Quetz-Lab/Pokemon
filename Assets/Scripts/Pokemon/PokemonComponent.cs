@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PokemonComponent : MonoBehaviour
 {
-   PokemonInformation m_PokemonInformation;
+    public PokemonInformation Information => m_PokemonInformation;
+    PokemonInformation m_PokemonInformation;
     Animator m_Animator;
 
     public void Initialize(PokemonDefinition p_Definition)
@@ -28,7 +29,7 @@ public class PokemonComponent : MonoBehaviour
         }
         return null;
     }
-    public PokemonMove UseRandomMove(string moveName)
+    public PokemonMove UseRandomMove()
     {
         return m_PokemonInformation.Moves[Random.Range(0, m_PokemonInformation.Moves.Length)];
     }

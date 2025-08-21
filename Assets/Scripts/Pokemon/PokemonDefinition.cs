@@ -47,6 +47,9 @@ public class PokemonDefinition : ScriptableObject
 
     private void OnValidate()
     {
+        {
+            
+        }
         if (m_Moves.Length > 4)
         {
             Debug.LogWarning("A Pokemon can only have up to 4 movements");

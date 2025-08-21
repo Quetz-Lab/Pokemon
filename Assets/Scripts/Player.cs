@@ -6,9 +6,10 @@ public class Player : StateMachine
     public Animator animator;
     public LayerMask groundLayer;
     private InputSystem_Actions m_InputActions;
+    public PokemonDefinition m_Pokemon;
     public bool isGrounded()
     {
-        
+
         return Physics.Raycast(transform.position, Vector3.down, 0.1f, groundLayer);
     }
     public Vector3 MoveDirection()
@@ -21,7 +22,7 @@ public class Player : StateMachine
         m_InputActions = new InputSystem_Actions();
         m_InputActions.Enable();
 
-       rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         m_CurrentState = new PlayerIdle(this);
     }
@@ -30,11 +31,11 @@ public class Player : StateMachine
         float rotation = MoveDirection().x;
         //animator.SetFloat("Turn", rotation * 90);
         animator.InterpolateFloat("Turn", rotation * 90, p_RotationSpeed);
-        if(rotation == 0f) { return; }
-        
-            Quaternion targetRotation = Quaternion.Euler(0f, transform.eulerAngles.y + rotation * 90f,0f);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * p_RotationSpeed);
-        
+        if (rotation == 0f) { return; }
+
+        Quaternion targetRotation = Quaternion.Euler(0f, transform.eulerAngles.y + rotation * 90f, 0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * p_RotationSpeed);
+
     }
 
     public void Move(float p_Speed)
@@ -46,12 +47,17 @@ public class Player : StateMachine
 
     public void ClampToFloor()
     {
-        if (!isGrounded()) {  return; }
+        if (!isGrounded()) { return; }
         RaycastHit hit;
         if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out hit, 2f, groundLayer))
         {
             transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
         }
+    }
+
+    public void GetAmbushed()
+    {
+        ChangeState(new Ambushed(this));
     }
 
 }
@@ -73,7 +79,7 @@ public class PlayerIdle : State
     }
     public override void Update()
     {
-        
+
     }
 
     public override void FixedUpdate()
@@ -85,7 +91,7 @@ public class PlayerIdle : State
         }
         if (!m_Player.isGrounded()) { m_Player.ChangeState(new PlayerFalling(m_Player)); }
     }
-    public override void Exit() 
+    public override void Exit()
     {
         Debug.Log("Player is leaving idle state");
     }
@@ -99,7 +105,9 @@ public class PlayerMove : State
         m_Player = player;
     }
 
-    public override void Enter() { Debug.Log("Player is now moving");
+    public override void Enter()
+    {
+        Debug.Log("Player is now moving");
 
         m_Player.animator?.CrossFadeInFixedTime("Move", 0.2f);
     }
@@ -138,7 +146,7 @@ public class PlayerFalling : State
     }
     public override void FixedUpdate()
     {
-        if(m_Player.isGrounded())
+        if (m_Player.isGrounded())
         {
             m_Player.ChangeState(new PlayerIdle(m_Player));
         }
@@ -150,19 +158,31 @@ public class PlayerFalling : State
 
 }
 
-public class  Ambushed : State
+public class Ambushed : State
 {
+    float MaxTime = 1f;
+    Player m_Player;
+    
+    public Ambushed(Player player)
+    {
+        m_Player = player;
+    }
     public override void Enter()
     {
         Debug.Log("Player is now ambushed");
+        m_Player.animator?.CrossFadeInFixedTime("mixamo.com", 0.2f);
+        MaxTime += Time.time;
     }
     public override void Update()
     {
+        if(Time.time >= MaxTime)
+        {
+            GameManager.StartCombatWithRandomPokemon(m_Player.m_Pokemon);
+        }
 
     }
     public override void FixedUpdate()
     {
-
     }
     public override void Exit()
     {
@@ -172,7 +192,7 @@ public class  Ambushed : State
 
 public static class MyExtensions
 {
-    public static void InterpolateFloat(this Animator animator, string parameter , float value, float speed)
+    public static void InterpolateFloat(this Animator animator, string parameter, float value, float speed)
     {
         float current = animator.GetFloat(parameter);
         float direction = Mathf.Sign(value - current);

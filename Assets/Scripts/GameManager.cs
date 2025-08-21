@@ -4,19 +4,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameObject newCombatArena => Instantiate(GetInstance().CombatArenaPrefab);
-    [SerializeField] private GameObject m_CombatArenaPrefab;
-    public static GameObject CombatArena;
-
-    public static GameObject ForestArena;
+    //[SerializeField] private GameObject m_CombatArenaPrefab;
     public static GameManager Instance => GetInstance();
     private static GameManager m_instance;
-    [SerializeField]  float GlobalxpRate = 1.0f;
+    [SerializeField] float GlobalxpRate = 1.0f;
     [SerializeField] private GameObject CombatArenaPrefab;
     [SerializeField] private GameObject PokemonPrefab;
     [SerializeField] private PokemonDefinition[] m_pkmToSpawn;
     [SerializeField] private PokemonDefinition pkmn1;
     [SerializeField] private PokemonDefinition pkmn2;
-    
+
     public static GameManager GetInstance()
     {
         if (m_instance == null) { return m_instance; }
@@ -26,7 +23,7 @@ public class GameManager : MonoBehaviour
         m_instance = gameManagerObject.AddComponent<GameManager>();
         return m_instance;
     }
-    void Start()
+    void Awake()
     {
         m_instance = this;
         DontDestroyOnLoad(gameObject);
@@ -49,7 +46,7 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Combat Arena scene could not be loaded");
         }
     }
-    public static PokemonComponent SpawnPokemon (PokemonDefinition p_Pokemon, Vector3 p_Position)
+    public static PokemonComponent SpawnPokemon(PokemonDefinition p_Pokemon, Vector3 p_Position)
     {
         PokemonComponent pokemonComponent = Instantiate(GetInstance().PokemonPrefab, p_Position, Quaternion.identity).GetComponent<PokemonComponent>();
 
@@ -60,26 +57,25 @@ public class GameManager : MonoBehaviour
 
     private static IEnumerator LoadCombatSceneAndInitialize(PokemonDefinition p_Poke1, PokemonDefinition p_Poke2)
     {
-        AsyncOperation t_AsyncLoad = SceneManager.LoadSceneAsync("CombatScene");
+        AsyncOperation t_AsyncLoad = SceneManager.LoadSceneAsync("ForestArena");
         while (!t_AsyncLoad.isDone) { yield return null; }
-        Instantiate(ForestArena);
-        PokemonComponent t_Pokemon1 = NewPokemon.GetComponent<PokemonComponent>();
-        t_Pokemon1.Initialize(p_Poke1);
-        PokemonComponent t_Pokemon2 = NewPokemon.GetComponent<PokemonComponent>();
-        t_Pokemon2.Initialize(p_Poke2);
+        Instantiate(Instance.CombatArenaPrefab);
+        PokemonComponent t_Pokemon1 = SpawnPokemon(p_Poke1, Vector3.zero);
+        PokemonComponent t_Pokemon2 = SpawnPokemon(p_Poke2, Vector3.zero*-1);
+        
     }
-    public static GameObject NewPokemon => Instantiate(m_instance.PokemonPrefab);
     public static void StartCombatWithRandomPokemon(PokemonDefinition p_Pokemon1)
     {
         PokemonDefinition p_Pokemon2 = m_instance.GetRandomPokemon();
-        Instance.StartCoroutine(LoadCombatSceneAndInitialize(p_Pokemon1,p_Pokemon2));
+        Instance.StartCoroutine(LoadCombatSceneAndInitialize(p_Pokemon1, p_Pokemon2));
     }
     public PokemonDefinition GetRandomPokemon()
     {
+        if (m_pkmToSpawn == null) Debug.LogError("Not Intitialized Pokemons");
         if (m_pkmToSpawn.Length == 0) { Debug.LogError("No Pokemon to spawn"); return null; }
         int randomIndex = Random.Range(0, m_pkmToSpawn.Length);
         return m_pkmToSpawn[randomIndex];
     }
-    
+
 }
 

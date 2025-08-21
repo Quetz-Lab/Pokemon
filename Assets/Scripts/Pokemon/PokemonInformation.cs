@@ -11,14 +11,17 @@ public class PokemonInformation
         m_MaxHealth = definition.Health;
         m_CurrentHealth = m_MaxHealth;
         m_Moves = new List<PokemonMove>(4);
-        foreach (PokemonMove move in definition.Moves)
+        if (definition.Moves != null)
         {
-            if (move == null) {  continue; }
-            m_Moves.Add(move);
+            foreach (PokemonMove move in definition.Moves)
+            {
+                if (move == null) { continue; }
+                m_Moves.Add(move);
+            }
         }
     }
     public string Name => m_Definition.name;
-    public int MaxHealth => m_Definition.Health +2 * m_Level;
+    public int MaxHealth => m_Definition.Health + 2 * m_Level;
     public int CurrentHealth => m_CurrentHealth;
     public int Attack => m_Definition.Attack + m_Level;
     public int SpecialAttack => m_Definition.SpecialAttack + m_Level;
@@ -68,16 +71,16 @@ public class PokemonInformation
 
     private int GetXpForNextLevel()
     {
-        return(int)(Mathf.Pow(m_Level + 1, 1.25F) * 10);
+        return (int)(Mathf.Pow(m_Level + 1, 1.25F) * 10);
     }
-   private void LevelUp()
+    private void LevelUp()
     {
         m_Level++;
     }
     public void Rename(string newName)
     {
         if (string.IsNullOrEmpty(newName))
-        { 
+        {
             Debug.LogError("Pokemon model is not set in the definition");
             return;
         }
@@ -107,11 +110,17 @@ public class PokemonInformation
 
     public GameObject SpawnModel(Transform p_Parent)
     {
+        if (m_Definition == null)
+        {
+            Debug.LogError("Definition");
+            return null;
+        }
         if (m_Definition.Model == null)
         {
             Debug.LogError("Pokemon model is not set in the definition");
             return null;
         }
+        
         GameObject t_Model = UnityEngine.Object.Instantiate(m_Definition.Model, p_Parent);
         t_Model.transform.localPosition = Vector3.zero;
         t_Model.transform.localRotation = Quaternion.identity;

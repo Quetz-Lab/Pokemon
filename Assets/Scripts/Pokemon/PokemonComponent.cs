@@ -8,9 +8,10 @@ public class PokemonComponent : MonoBehaviour
 
     public void Initialize(PokemonDefinition p_Definition)
     {
+        if (p_Definition == null) { Debug.LogWarning("Not a Valid Definition"); return; }
         m_PokemonInformation = new PokemonInformation(p_Definition);
-        m_Animator = m_PokemonInformation.SpawnModel(transform).GetComponent<Animator>();
         name = m_PokemonInformation.Name;
+        m_Animator = m_PokemonInformation.SpawnModel(transform).GetComponent<Animator>();
     }
 
     public void PlayAnimation(string animationName)

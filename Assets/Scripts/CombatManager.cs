@@ -30,6 +30,9 @@ public class CombatManager : StateMachine
         GameObject combatArena = GameManager.newCombatArena;
         Instance.playerPokemon = GameManager.SpawnPokemon(p_Pokemon1, Vector3.zero);
         Instance.enemyPokemon = GameManager.SpawnPokemon(p_Pokemon2, new Vector3(5, 0, 0));
+       Instance.playerPokemon.transform.LookAt(Instance.enemyPokemon.transform, Vector3.up);
+        Instance.enemyPokemon.transform.LookAt(Instance.playerPokemon.transform, Vector3.up);
+
         StartNewRound();
 
     }
@@ -39,6 +42,7 @@ public class CombatManager : StateMachine
         Instance.turnQueue.Clear();
         Instance.m_PlayerMove = null; // Reset the player's move for the new round
         Instance.ChangeState(new WaitForActionState());
+        Debug.Log("New round started. Waiting for player action. Pok");
     }
     public static void BuildTurnQueue()
     {

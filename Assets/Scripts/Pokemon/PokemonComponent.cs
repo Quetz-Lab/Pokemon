@@ -32,6 +32,11 @@ public class PokemonComponent : MonoBehaviour
     }
     public PokemonMove UseRandomMove()
     {
+        if (m_PokemonInformation.Moves == null || m_PokemonInformation.Moves.Length == 0)
+        {
+            Debug.LogWarning("No moves available for this Pokemon.");
+            return null;
+        }
         return m_PokemonInformation.Moves[Random.Range(0, m_PokemonInformation.Moves.Length)];
     }
 }

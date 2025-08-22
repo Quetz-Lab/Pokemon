@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81d901673c06ec9418da11a8e2ede00f, type: 3}
-  m_Name: Deer
+  m_Name: Tiger
   m_EditorClassIdentifier: 
-  m_PokemonName: Deer
+  m_PokemonName: Tiger
   m_Description: 
-  m_Model: {fileID: 7402009758359158996, guid: 4ecab060b0afb5d4db61f7f1311b9e24, type: 3}
+  m_Model: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
   m_Sprite: {fileID: 0}
-  m_Health: 15
-  m_Attack: 12
-  m_SpecialAttack: 12
-  m_SpecialDefense: 5
-  m_Defense: 22
-  m_Speed: 2
+  m_Health: 52
+  m_Attack: 24
+  m_SpecialAttack: 70
+  m_SpecialDefense: 29
+  m_Defense: 38
+  m_Speed: 22
   m_Moves:
-  - {fileID: 11400000, guid: bb321135408078b43a0bd8da16b07c06, type: 2}
-  m_MainType: 2
-  m_SecondaryType: 3
+  - {fileID: 11400000, guid: d4d62b746b91de34b85ada95442c061a, type: 2}
+  m_MainType: 0
+  m_SecondaryType: 4
   m_EvolutionLevel: 0
   m_Evolution: {fileID: 0}

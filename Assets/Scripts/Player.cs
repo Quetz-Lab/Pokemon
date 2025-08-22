@@ -162,27 +162,40 @@ public class Ambushed : State
 {
     float MaxTime = 1f;
     Player m_Player;
-    
+    Timer m_Timer = new Timer(3f);
+
     public Ambushed(Player player)
     {
         m_Player = player;
+        m_Timer.Reset(3f);
     }
     public override void Enter()
     {
-        Debug.Log("Player is now ambushed");
-        m_Player.animator?.CrossFadeInFixedTime("mixamo.com", 0.2f);
+        //Debug.Log("Player is now ambushed");
+        m_Player.animator?.CrossFadeInFixedTime("mixamo_com", 0.2f);
         MaxTime += Time.time;
+        m_Timer.Reset(3f);
     }
     public override void Update()
     {
-        if(Time.time >= MaxTime)
+        //Debug.Log(MaxTime);
+        //Debug.Log(Time.time);   
+        if (Time.time >= MaxTime)
         {
+
             GameManager.StartCombatWithRandomPokemon(m_Player.m_Pokemon);
         }
 
     }
     public override void FixedUpdate()
     {
+        m_Timer.Tick(Time.fixedDeltaTime);
+        if (m_Timer.IsFinished)
+        {
+            //Debug.Log("Timer finished");
+            m_Player.ChangeState(new PlayerIdle(m_Player));
+            return;
+        }
     }
     public override void Exit()
     {

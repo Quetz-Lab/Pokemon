@@ -20,11 +20,12 @@ MonoBehaviour:
   m_Attack: 20
   m_SpecialAttack: 15
   m_SpecialDefense: 10
-  m_Defense: 0
+  m_Defense: 100
   m_Speed: 12
   m_Moves:
   - {fileID: 11400000, guid: bb321135408078b43a0bd8da16b07c06, type: 2}
+  - {fileID: 11400000, guid: 0c2acbcab77625545897bdc23e329ddb, type: 2}
   m_MainType: 4
   m_SecondaryType: 0
-  m_EvolutionLevel: 0
-  m_Evolution: {fileID: 0}
+  m_EvolutionLevel: 25
+  m_Evolution: {fileID: 11400000, guid: 72f50f44103a3734ca364ac2583dd0ab, type: 2}

@@ -9,16 +9,19 @@ public class WaitForActionState : State
     }
     public override void Update()
     {
+       
         if (Input.GetKeyDown(KeyCode.Space))
-        {
+        {  
             CombatManager.Instance.m_PlayerMove = CombatManager.Instance.playerPokemon.UseRandomMove();
+            CombatManager.BuildTurnQueue();
+            Debug.Log("Action chosen by player.");
         }
     }
     public override void FixedUpdate()
     {
       if (IsActionChosen())
         {
-            CombatManager.BuildTurnQueue();
+            CombatManager.PlayNextTurn();
         }
        
     }

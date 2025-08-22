@@ -59,10 +59,12 @@ public class GameManager : MonoBehaviour
     {
         AsyncOperation t_AsyncLoad = SceneManager.LoadSceneAsync("ForestArena");
         while (!t_AsyncLoad.isDone) { yield return null; }
-        Instantiate(Instance.CombatArenaPrefab);
-        PokemonComponent t_Pokemon1 = SpawnPokemon(p_Poke1, Vector3.zero);
-        PokemonComponent t_Pokemon2 = SpawnPokemon(p_Poke2, Vector3.zero*-1);
-        
+        //Instantiate(Instance.CombatArenaPrefab);
+        //PokemonComponent t_Pokemon1 = SpawnPokemon(p_Poke1, Vector3.zero);
+        //PokemonComponent t_Pokemon2 = SpawnPokemon(p_Poke2, Vector3.forward);
+        CombatManager.StartCombat(p_Poke1, p_Poke2);
+       
+
     }
     public static void StartCombatWithRandomPokemon(PokemonDefinition p_Pokemon1)
     {

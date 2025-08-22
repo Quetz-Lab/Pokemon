@@ -8,11 +8,12 @@ public class StateMachine : MonoBehaviour
     }
     private void Update()
     {
-        
+    m_CurrentState?.Update();
     }
     private void FixedUpdate()
     {
         m_CurrentState?.FixedUpdate();
+
     }
     public void ChangeState(State newState)
     {

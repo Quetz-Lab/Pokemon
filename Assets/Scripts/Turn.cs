@@ -19,6 +19,7 @@ public class Turn
     }
      public void StartTurn()
     {
+
         CombatManager.Instance.ChangeState(m_Attack);
     }
     public class AttackState : State

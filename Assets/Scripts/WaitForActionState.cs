@@ -5,6 +5,10 @@ public class WaitForActionState : State
     
     public override void Enter()
     {
+        CombatManager.Instance.turnQueue.Clear();
+        CombatManager.Instance.playerPokemon.m_Animator.CrossFadeInFixedTime("Idle", 0.2f);
+        CombatManager.Instance.enemyPokemon.m_Animator.CrossFadeInFixedTime("Idle", 0.2f);
+        CombatManager.Instance.m_PlayerMove = null;
         // Logic for entering the wait for action state
     }
     public override void Update()

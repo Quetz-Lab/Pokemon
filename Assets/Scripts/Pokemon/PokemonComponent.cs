@@ -4,7 +4,7 @@ public class PokemonComponent : MonoBehaviour
 {
     public PokemonInformation Information => m_PokemonInformation;
     PokemonInformation m_PokemonInformation;
-    Animator m_Animator;
+    public Animator m_Animator;
 
     public void Initialize(PokemonDefinition p_Definition)
     {

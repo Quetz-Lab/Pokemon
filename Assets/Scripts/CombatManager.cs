@@ -10,6 +10,7 @@ public class CombatManager : StateMachine
     public PokemonComponent playerPokemon;
     public PokemonComponent enemyPokemon;
     public PokemonMove m_PlayerMove;
+   
     private static CombatManager GetInstance()
     {
         if (m_instance == null)

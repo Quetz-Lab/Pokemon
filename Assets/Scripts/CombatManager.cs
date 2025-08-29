@@ -47,21 +47,21 @@ public class CombatManager : StateMachine
     }
     public static void BuildTurnQueue()
     {
-        PokemonInformation fastestestPokemon;
-        PokemonInformation slowestPokemon;
+        PokemonComponent fastestestPokemon;
+        PokemonComponent slowestPokemon;
         PokemonMove fastestMove, slowestMove;
         if (Instance.playerPokemon.Information.Speed > Instance.enemyPokemon.Information.Speed)
         {
-            fastestestPokemon = Instance.playerPokemon.Information;
+            fastestestPokemon = Instance.playerPokemon;
             fastestMove = Instance.m_PlayerMove;
-            slowestPokemon = Instance.enemyPokemon.Information;
+            slowestPokemon = Instance.enemyPokemon;
             slowestMove = Instance.enemyPokemon.UseRandomMove();
         }
         else
         {
-            fastestestPokemon = Instance.enemyPokemon.Information;
+            fastestestPokemon = Instance.enemyPokemon;
             fastestMove = Instance.enemyPokemon.UseRandomMove();
-            slowestPokemon = Instance.playerPokemon.Information;
+            slowestPokemon = Instance.playerPokemon;
             slowestMove = Instance.m_PlayerMove;
 
         }

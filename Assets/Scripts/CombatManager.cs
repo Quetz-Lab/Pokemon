@@ -91,4 +91,9 @@ public class CombatManager : StateMachine
             return 5 + move.Power * (attacker.Attack / receiver.Defense);
         }
     }
+    public static void SetPlayerMove(PokemonMove p_Move)
+    {
+        Instance.m_PlayerMove = p_Move;
+    }
+  
 }

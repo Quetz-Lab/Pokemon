@@ -10,7 +10,8 @@ public class CombatManager : StateMachine
     public PokemonComponent playerPokemon;
     public PokemonComponent enemyPokemon;
     public PokemonMove m_PlayerMove;
-   
+    public NewCombatUI m_combatUI;
+
     private static CombatManager GetInstance()
     {
         if (m_instance == null)
@@ -33,6 +34,8 @@ public class CombatManager : StateMachine
         Instance.enemyPokemon = GameManager.SpawnPokemon(p_Pokemon2, new Vector3(5, 0, 0));
        Instance.playerPokemon.transform.LookAt(Instance.enemyPokemon.transform, Vector3.up);
         Instance.enemyPokemon.transform.LookAt(Instance.playerPokemon.transform, Vector3.up);
+        Instance.m_combatUI = GameManager.NewCombatUI;
+        Instance.m_combatUI.Initialized(Instance.playerPokemon.Information);
 
         StartNewRound();
 
@@ -67,6 +70,7 @@ public class CombatManager : StateMachine
         }
         Instance.turnQueue.Enqueue(new Turn(fastestestPokemon, slowestPokemon, fastestMove));
         Instance.turnQueue.Enqueue(new Turn(slowestPokemon, fastestestPokemon, slowestMove));
+        Instance.m_combatUI.UpdateHealth(Instance.playerPokemon.Information, Instance.enemyPokemon.Information);
     }
     public static void PlayNextTurn()
     {
@@ -94,6 +98,9 @@ public class CombatManager : StateMachine
     public static void SetPlayerMove(PokemonMove p_Move)
     {
         Instance.m_PlayerMove = p_Move;
+        Debug.Log("Player selected move:" + p_Move.MoveName);
+        BuildTurnQueue();
+        PlayNextTurn();
     }
   
 }

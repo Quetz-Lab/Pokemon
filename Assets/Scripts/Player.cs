@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : StateMachine
 {
@@ -7,6 +8,17 @@ public class Player : StateMachine
     public LayerMask groundLayer;
     private InputSystem_Actions m_InputActions;
     public PokemonDefinition m_Pokemon;
+    [SerializeField] private InputActionReference Look;
+    private Transform mainCamera;
+
+    private void OnEnable()
+    {
+        Look.action.Enable();
+    }
+    private void OnDisable()
+    {
+        Look.action.Disable();
+    }
     public bool isGrounded()
     {
 
@@ -21,10 +33,24 @@ public class Player : StateMachine
     {
         m_InputActions = new InputSystem_Actions();
         m_InputActions.Enable();
+        mainCamera = Camera.main.transform;
 
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         m_CurrentState = new PlayerIdle(this);
+    }
+
+    void Update()
+    {
+       float mouseX = Look.action.ReadValue<Vector2>().x * 2f;
+
+        transform.Rotate(0, mouseX * Time.deltaTime, 0);
+        mainCamera.Rotate(-mouseX * Time.deltaTime, 0,0);
+
+        //Vector3 cameraRotation = mainCamera.eulerAngles;
+        //if (cameraRotation.x > 180) { cameraRotation.x -= 360; }
+        //cameraRotation.x = Mathf.Clamp(cameraRotation.x, -45, 45);
+        //mainCamera.eulerAngles = cameraRotation;
     }
     public void Rotate(float p_RotationSpeed)
     {

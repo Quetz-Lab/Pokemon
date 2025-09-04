@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameObject newCombatArena => Instantiate(GetInstance().CombatArenaPrefab);
+    [SerializeField] private GameObject m_CombatUIPrefab;
+    public static NewCombatUI NewCombatUI => Instantiate(GetInstance().m_CombatUIPrefab).GetComponent<NewCombatUI>();
+
     //[SerializeField] private GameObject m_CombatArenaPrefab;
     public static GameManager Instance => GetInstance();
     private static GameManager m_instance;

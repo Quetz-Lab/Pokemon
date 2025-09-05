@@ -71,6 +71,7 @@ public class CombatManager : StateMachine
         Instance.turnQueue.Enqueue(new Turn(fastestestPokemon, slowestPokemon, fastestMove));
         Instance.turnQueue.Enqueue(new Turn(slowestPokemon, fastestestPokemon, slowestMove));
         Instance.m_combatUI.UpdateHealth(Instance.playerPokemon.Information, Instance.enemyPokemon.Information);
+        
     }
     public static void PlayNextTurn()
     {
@@ -82,6 +83,20 @@ public class CombatManager : StateMachine
         {
             Turn t_nextTurn = Instance.turnQueue.Dequeue();
             t_nextTurn.StartTurn();
+        }
+
+        if (Instance.playerPokemon.Information.CurrentHealth <= 0)
+        {
+            Debug.Log("Player's Pokemon has fainted!");
+            Instance.m_combatUI.ShowLoseScreen();
+            GameManager.EndCombat();
+        }
+        else if (Instance.enemyPokemon.Information.CurrentHealth <= 0)
+        {
+            Instance.m_combatUI.ShowWinScreen();
+            
+            GameManager.EndCombat();
+            Debug.Log("Enemy's Pokemon has fainted!");
         }
     }
     public static int CalculateDamage(PokemonMove move, PokemonInformation attacker, PokemonInformation receiver)

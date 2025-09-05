@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PokemonInformation
 {
@@ -57,6 +58,10 @@ public class PokemonInformation
         if (m_CurrentHealth > MaxHealth)
         {
             m_CurrentHealth = MaxHealth;
+        }
+        else if (m_CurrentHealth >= 20)
+        {
+            SceneManager.LoadScene(1);
         }
     }
     public void Gain(int amount)

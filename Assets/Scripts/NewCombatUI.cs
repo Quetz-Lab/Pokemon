@@ -11,6 +11,8 @@ public class NewCombatUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_PlayerPokemon;
     [SerializeField] private Slider m_PlayerHealthTxt;
     [SerializeField] private Slider m_EnemyHealthTxt;
+    [SerializeField] private GameObject m_WinScreen;
+    [SerializeField] private GameObject m_LoseScreen;
     public void Initialized(PokemonInformation pokemonInformation)
     {
         if (pokemonInformation.Moves == null || pokemonInformation.Moves.Length == 0)
@@ -29,7 +31,7 @@ public class NewCombatUI : MonoBehaviour
     public void SetTextBox(string message)
     {
         m_TextBox.text = message;
-        m_PlayerPokemon.text = "Bianca";
+        //m_PlayerPokemon.text = "Bianca";
     }
 
     public void UpdateHealth(PokemonInformation p_playerInfo, PokemonInformation p_enemyInfo)
@@ -39,4 +41,13 @@ public class NewCombatUI : MonoBehaviour
         m_EnemyHealthTxt.maxValue = p_enemyInfo.MaxHealth;
         m_EnemyHealthTxt.value = p_enemyInfo.CurrentHealth;
     }
-}
+    public void ShowWinScreen()
+    {
+        m_WinScreen.SetActive(true);
+    }
+    public void ShowLoseScreen()
+    {
+        m_LoseScreen.SetActive(true);
+    }
+
+    }

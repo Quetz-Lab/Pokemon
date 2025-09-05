@@ -42,10 +42,10 @@ public class Player : StateMachine
 
     void Update()
     {
-       float mouseX = Look.action.ReadValue<Vector2>().x * 2f;
+        float mouseX = Look.action.ReadValue<Vector2>().x * 2f;
 
         transform.Rotate(0, mouseX * Time.deltaTime, 0);
-        mainCamera.Rotate(-mouseX * Time.deltaTime, 0,0);
+        //mainCamera.Rotate(-mouseX * Time.deltaTime, 0, 0);
 
         //Vector3 cameraRotation = mainCamera.eulerAngles;
         //if (cameraRotation.x > 180) { cameraRotation.x -= 360; }
@@ -206,11 +206,11 @@ public class Ambushed : State
     {
         //Debug.Log(MaxTime);
         //Debug.Log(Time.time);   
-        if (Time.time >= MaxTime)
-        {
-
-            GameManager.StartCombatWithRandomPokemon(m_Player.m_Pokemon);
-        }
+        //if (m_Timer.IsFinished)
+        //{
+        //    GameManager.StartCombatWithRandomPokemon(m_Player.m_Pokemon);
+        //    return;
+        //}
 
     }
     public override void FixedUpdate()
@@ -220,6 +220,7 @@ public class Ambushed : State
         {
             //Debug.Log("Timer finished");
             m_Player.ChangeState(new PlayerIdle(m_Player));
+            GameManager.StartCombatWithRandomPokemon(m_Player.m_Pokemon);
             return;
         }
     }

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public static void StartCombat()
     {
+        
         SceneManager.CreateScene("CombatArena", new CreateSceneParameters(LocalPhysicsMode.Physics3D));
         Scene combatArenaScene = SceneManager.GetSceneByName("CombatArena");
         if (combatArenaScene.isLoaded)
@@ -67,12 +68,24 @@ public class GameManager : MonoBehaviour
         //PokemonComponent t_Pokemon2 = SpawnPokemon(p_Poke2, Vector3.forward);
         CombatManager.StartCombat(p_Poke1, p_Poke2);
        
-
+    }
+    private static IEnumerator LoadMainScene()
+    {
+        AsyncOperation t_AsyncLoad = SceneManager.LoadSceneAsync("SampleScene");
+        while (!t_AsyncLoad.isDone) { yield return null; }
     }
     public static void StartCombatWithRandomPokemon(PokemonDefinition p_Pokemon1)
     {
         PokemonDefinition p_Pokemon2 = m_instance.GetRandomPokemon();
         Instance.StartCoroutine(LoadCombatSceneAndInitialize(p_Pokemon1, p_Pokemon2));
+    }
+
+    public static void EndCombat()
+    {
+        //SceneManager.UnloadSceneAsync("CombatArena");
+        SceneManager.UnloadSceneAsync("ForestArena");
+        Instance.StartCoroutine(LoadMainScene());
+        
     }
     public PokemonDefinition GetRandomPokemon()
     {
